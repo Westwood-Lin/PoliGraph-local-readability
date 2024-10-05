@@ -1,3 +1,17 @@
+# Westwood-Lin fork README
+Poligraph is a very good implementation for Privacy Policy(PP for short) processing, with its origin link: https://github.com/UCI-Networking-Group/PoliGraph and paper: https://www.usenix.org/conference/usenixsecurity23/presentation/cui
+But in my area, poligrapher/scripts/html_crawler.py use 'requests' lib and online resources, which caused some unnecessary network problems.
+As a result, I download the 2 json file and modify 'html_crawler.py' to avoid network traffic thus it can provide better support for local PP html file processing.
+
+PoliGraph 是一个很棒的隐私政策处理工具，但是 poligrapher/scripts/html_crawler.py 用了网络请求，有网络问题，比较麻烦，我下载了脚本里需要的2个json文件，修改了`html_crawler.py`以避免网络请求，并为本地html格式的隐私文件处理提供更好的支持
+
+例子:
+在目录`Poligraph`下，执行命令，不会再需要发送网络请求：
+```bash
+target=/home/${USER}/PoliGraph/example/OPP-115/sanitized_policies/some_file.html
+python -m poligrapher.scripts.init_document $target
+```
+
 # PoliGraph: Automated Privacy Policy Analysis using Knowledge Graphs
 
 We propose PoliGraph, a framework to represent data collection statements in a privacy policy as a knowledge graph. We implemented an NLP-based tool, PoliGraph-er, to generate PoliGraphs and enable us to perform many analyses.
