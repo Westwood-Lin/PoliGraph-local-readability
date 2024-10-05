@@ -20,8 +20,26 @@ READABILITY_JS_COMMIT = "8e8ec27cd2013940bc6f3cc609de10e35a1d9d86"
 READABILITY_JS_URL = f"https://raw.githubusercontent.com/mozilla/readability/{READABILITY_JS_COMMIT}"
 REQUESTS_TIMEOUT = 10
 
+# fork modification
+LOCAL_JS=r'/home/fyl/project/PoliGraph/poligrapher/scripts/Readability.js'
+LOCAL_JS2=r'/home/fyl/project/PoliGraph/poligrapher/scripts/Readability-readerable.js'
+
 
 def get_readability_js():
+    js_code = []
+    js_path=LOCAL_JS if os.path.exists(LOCAL_JS) else ('./poligrapher/scripts/Readability.js')
+    js_path2 = LOCAL_JS2 if os.path.exists(LOCAL_JS2) else ('./poligrapher/scripts/Readability-readerable.js')
+
+    with open(js_path, 'r', encoding='utf-8') as f:
+        js_code.append(f.read())
+        js_code.append(f.read())
+    with open(js_path2, 'r', encoding='utf-8') as f:
+        js_code.append(f.read())
+    return "\n".join(js_code)
+
+
+# origin get_readability_js, it may cause network problems
+def get_readability_js_origin():
     session = CachedSession("py_request_cache", backend="filesystem", use_temp=True)
     js_code = []
 
