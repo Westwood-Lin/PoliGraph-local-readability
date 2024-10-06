@@ -202,8 +202,9 @@ def main():
         if not lang.lower().startswith("en"):
             error_cleanup(f"Content language {lang} isn't English")
 
-        if re.search(r"(data|privacy)\s*(?:policy|notice)", soup_text, re.I) is None:
-            error_cleanup("Not like a privacy policy")
+#        if re.search(r"(data|privacy)\s*(?:policy|notice)", soup_text, re.I) is None:
+#        if re.search(r"data|privacy") is None and re.search(r"policy|notice|statement|claim") is None:
+#            error_cleanup("Not like a privacy policy")
 
         # obtain the accessibility tree
         snapshot = page.accessibility.snapshot(interesting_only=False)
